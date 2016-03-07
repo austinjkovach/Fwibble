@@ -1,4 +1,4 @@
-var HmtlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/client/index.html',
   filename: 'index.html',
@@ -18,7 +18,7 @@ module.exports = {
   
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react' }
+      { test: /\.js$/, exclude: /node_modules/, loaders: [ 'babel-loader?presets[]=es2015&presets[]=react', 'react-hot' ] }
     ]
   },
 
