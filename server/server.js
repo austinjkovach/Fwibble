@@ -4,7 +4,11 @@ var app = express();
 var port = 3000;
 var assetFolder = Path.resolve(__dirname + '/../dist')
 console.log(assetFolder)
+
 app.use(express.static(assetFolder));
+
+app.use(bodyParser)
+
 app.get('/*', function(req, res){
   res.sendFile(assetFolder + '/index.html');
 })
