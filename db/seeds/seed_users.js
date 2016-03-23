@@ -5,19 +5,19 @@ var seedUser = function() {
   //   .then(function() {
       return pg('users').insert([
         {
-          user_id: 1,
           username: 'Player1',
-          active_room: 1
+          password: 'password',
+          active_game: '458d21'
         },
         {
-          user_id: 2,
           username: 'Player2',
-          active_room: 1
+          password: 'drowssap',
+          active_game: '458d21'
         }
       ])
     // })
     .catch(function(error) {
-      console.error('error seeding messages', error)
+      console.error('error seeding users', error)
     })
 };
 

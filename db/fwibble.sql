@@ -3,26 +3,31 @@ CREATE SCHEMA public;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL NOT NULL PRIMARY KEY,
-  username varchar(20) NOT NULL,
+  username varchar(20) NOT NULL UNIQUE,
   password varchar,
-  active_room varchar
+  active_game varchar
 );
 
-CREATE TABLE IF NOT EXISTS rooms (
-  room_id SERIAL NOT NULL PRIMARY KEY,
-  room_hash varchar
+CREATE TABLE IF NOT EXISTS games (
+  game_id SERIAL NOT NULL PRIMARY KEY,
+  game_hash varchar UNIQUE,
+  game_title varchar,
+  turn_index INTEGER DEFAULT 0,
+  game_status varchar DEFAULT 'open',
+  game_creator varchar REFERENCES users (username)
 );
 
-CREATE TABLE IF NOT EXISTS user_room (
-  user_room_id SERIAL NOT NULL PRIMARY KEY,
-  user_id INTEGER REFERENCES users (user_id),
-  room_id INTEGER REFERENCES rooms (room_id)
+CREATE TABLE IF NOT EXISTS fwibs (
+  fwib_id SERIAL NOT NULL PRIMARY KEY,
+  fwib_content varchar NOT NULL,
+  game_hash varchar REFERENCES games (game_hash),
+  username varchar REFERENCES users (username),
+  createdat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS texts (
-  text_id SERIAL NOT NULL PRIMARY KEY,
-  text_content varchar NOT NULL,
-  room_id INTEGER REFERENCES rooms (room_id),
-  user_id INTEGER REFERENCES users (user_id),
-  createdAt TIMESTAMP
+CREATE TABLE IF NOT EXISTS sessions (
+  session_id SERIAL NOT NULL PRIMARY KEY,
+  username varchar REFERENCES users (username),
+  createdat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  token varchar
 );
