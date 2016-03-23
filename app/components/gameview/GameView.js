@@ -19,7 +19,11 @@ module.exports = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   getInitialState: function() {
+<<<<<<< 3f6ff1f29667cf321d9a7260cbd3b48beca77a15
     return {users: [], fwibs:[], text: '', turn: 0, myTurn: true, gameState: 'open', active: false};
+=======
+    return {users: [], fwibs:[], text: '', turn: 0, myTurn: true, showStory: false, active: false};
+>>>>>>> go button changes game state
   },
   componentWillMount: function(){
   },
@@ -32,7 +36,10 @@ module.exports = React.createClass({
    socket.on('update:users', this._updateUsers);
    socket.on('update:active_game', this.props.setActiveGame);
    socket.on('game:start', this.startUp);
+<<<<<<< 3f6ff1f29667cf321d9a7260cbd3b48beca77a15
    socket.on('game:end', this.gameEnd);
+=======
+>>>>>>> go button changes game state
     if(!this.props.active_game){
       console.log('this.params.game_hash', this.props.params.game_hash)
       this.props.joinGame({user: this.props.user, game_hash: this.props.params.game_hash});
