@@ -17,7 +17,7 @@ module.exports = React.createClass({
                 <div className="jumbotron">
                   <div><img src={require('./../../images/Fwibble-logo-cropped.png')} width='400px' height='200px' alt="Fwibble" className="img-responsive"/></div>
                   <p>You have successfully logged out.</p>
-                  <a href="/signin">Need more Fwibbles in your life? Sign back in!</a>
+                  <Link to="/signin">Need more Fwibbles in your life? Sign back in!</Link>
                 </div>
               </div>
             </div>
